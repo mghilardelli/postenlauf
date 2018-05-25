@@ -18,6 +18,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 import {HttpModule} from '@angular/http'; 
 import {AngularFireDatabaseModule} from 'angularfire2/database'; 
 import {AngularFireModule} from 'angularfire2'; 
+import { PostendetailPage } from '../pages/postendetail/postendetail';
 
 
 // Initialize Firebase
@@ -38,7 +39,8 @@ var config = {
     TabsPage,
     PostenPage,
     TeilnehmerPage,
-    RanglistePage
+    RanglistePage,
+    PostendetailPage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ var config = {
     TabsPage,
     PostenPage,
     TeilnehmerPage,
-    RanglistePage
+    RanglistePage,
+    PostendetailPage
   ],
   providers: [
     StatusBar,

@@ -3,6 +3,7 @@ import { NavController, Content, AlertController} from 'ionic-angular';
 import { FirebaseServiceProvider } from '../../providers/firebase-service/firebase-service';
 import { Observable } from 'rxjs/Observable'; 
 import { Keyboard } from '@ionic-native/keyboard';
+import { PostendetailPage } from '../postendetail/postendetail';
 
 @Component({
   selector: 'page-posten',
@@ -48,14 +49,15 @@ export class PostenPage {
 
   prompt.present();
 
-
-
-
     
   } 
 
   removePosten(id){
     this.firebaseService.deleteItem(id);
+  }
+
+  openPostenDetail(item){
+    this.navCtrl.setRoot(PostendetailPage);
   }
 
 
