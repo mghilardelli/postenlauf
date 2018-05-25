@@ -255,7 +255,7 @@ var PostenPage = /** @class */ (function () {
     ], PostenPage.prototype, "content", void 0);
     PostenPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-posten',template:/*ion-inline-start:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/posten/posten.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Posten</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="addPosten()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n<!-- whats onScroll not yet implemented-->\n<ion-content (ionScroll)="onScroll($event)">\n  <ion-list no-padding>\n    <ion-item-sliding *ngFor="let posten of allPosten | async">\n      <ion-item (click)="openPostenDetail(posten)" detail-push>\n\n        {{posten.Name}}\n      </ion-item>\n      <ion-item-options (ionSwipe)="removePosten(posten.key)" side="right">\n        <button ion-button color="danger" icon-only (click)="removePosten(posten.key)">\n          <ion-icon name="trash"></ion-icon>\n        </button>\n        <button ion-button icon-only (click)="editPosten(posten)" light>\n            <ion-icon name="paper"></ion-icon>\n        </button>\n      </ion-item-options>\n      <!--ion-item-options (ionSwipe)="doneItem(item.key, !item.isDone)" side="left"> \n        <button ion-button *ngIf="!item.isDone" color="secondary" (click)="doneItem(item.key, !item.isDone)">Done</button> \n        <button ion-button *ngIf="item.isDone" color="dark" (click)="doneItem(item.key, !item.isDone)">Undo</button> \n      </ion-item-options-->\n    </ion-item-sliding>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/posten/posten.html"*/
+            selector: 'page-posten',template:/*ion-inline-start:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/posten/posten.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Posten</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="addPosten()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n<!-- whats onScroll not yet implemented-->\n<ion-content > <!--(ionScroll)="onScroll($event)"-->\n  <ion-list no-padding>\n    <ion-item-sliding *ngFor="let posten of allPosten | async">\n      <ion-item (click)="openPostenDetail(posten)" detail-push>\n\n        {{posten.Name}}\n      </ion-item>\n      <ion-item-options (ionSwipe)="removePosten(posten.key)" side="right">\n        <button ion-button color="danger" icon-only (click)="removePosten(posten.key)">\n          <ion-icon name="trash"></ion-icon>\n        </button>\n        <button ion-button icon-only (click)="editPosten(posten.key, posten)" light>\n            <ion-icon name="paper"></ion-icon>\n        </button>\n      </ion-item-options>\n      <!--ion-item-options (ionSwipe)="doneItem(item.key, !item.isDone)" side="left"> \n        <button ion-button *ngIf="!item.isDone" color="secondary" (click)="doneItem(item.key, !item.isDone)">Done</button> \n        <button ion-button *ngIf="item.isDone" color="dark" (click)="doneItem(item.key, !item.isDone)">Undo</button> \n      </ion-item-options-->\n    </ion-item-sliding>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/posten/posten.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_service_firebase_service__["a" /* FirebaseServiceProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_keyboard__["a" /* Keyboard */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], PostenPage);
@@ -366,7 +366,7 @@ var PostendetailPage = /** @class */ (function () {
     };
     PostendetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-postendetail',template:/*ion-inline-start:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/postendetail/postendetail.html"*/'<!--\n  Generated template for the PostendetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>postendetail</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/postendetail/postendetail.html"*/,
+            selector: 'page-postendetail',template:/*ion-inline-start:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/postendetail/postendetail.html"*/'<!--\n  Generated template for the PostendetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    \n    <ion-title>Postendetail</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/postendetail/postendetail.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], PostendetailPage);
@@ -413,14 +413,12 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_http__ = __webpack_require__(439);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angularfire2_database__ = __webpack_require__(233);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angularfire2__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_postendetail_postendetail__ = __webpack_require__(279);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -459,8 +457,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__pages_tabs_tabs__["a" /* TabsPage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_posten_posten__["a" /* PostenPage */],
                 __WEBPACK_IMPORTED_MODULE_9__pages_teilnehmer_teilnehmer__["a" /* TeilnehmerPage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_rangliste_rangliste__["a" /* RanglistePage */],
-                __WEBPACK_IMPORTED_MODULE_17__pages_postendetail_postendetail__["a" /* PostendetailPage */]
+                __WEBPACK_IMPORTED_MODULE_8__pages_rangliste_rangliste__["a" /* RanglistePage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
@@ -483,8 +480,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6__pages_tabs_tabs__["a" /* TabsPage */],
                 __WEBPACK_IMPORTED_MODULE_7__pages_posten_posten__["a" /* PostenPage */],
                 __WEBPACK_IMPORTED_MODULE_9__pages_teilnehmer_teilnehmer__["a" /* TeilnehmerPage */],
-                __WEBPACK_IMPORTED_MODULE_8__pages_rangliste_rangliste__["a" /* RanglistePage */],
-                __WEBPACK_IMPORTED_MODULE_17__pages_postendetail_postendetail__["a" /* PostendetailPage */]
+                __WEBPACK_IMPORTED_MODULE_8__pages_rangliste_rangliste__["a" /* RanglistePage */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_10__ionic_native_status_bar__["a" /* StatusBar */],

@@ -11,7 +11,7 @@
 
 </ion-header>
 <!-- whats onScroll not yet implemented-->
-<ion-content (ionScroll)="onScroll($event)">
+<ion-content > <!--(ionScroll)="onScroll($event)"-->
   <ion-list no-padding>
     <ion-item-sliding *ngFor="let posten of allPosten | async">
       <ion-item (click)="openPostenDetail(posten)" detail-push>
@@ -22,7 +22,7 @@
         <button ion-button color="danger" icon-only (click)="removePosten(posten.key)">
           <ion-icon name="trash"></ion-icon>
         </button>
-        <button ion-button icon-only (click)="editPosten(posten)" light>
+        <button ion-button icon-only (click)="editPosten(posten.key, posten)" light>
             <ion-icon name="paper"></ion-icon>
         </button>
       </ion-item-options>

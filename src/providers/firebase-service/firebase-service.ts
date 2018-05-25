@@ -31,9 +31,9 @@ export class FirebaseServiceProvider {
     return this.postenRef.push({Name: newName})
   }
 
- // updateItem(key, newText){
-  //  return this.postenRef.update(key,{value: newText});
-  //}
+  updatePosten(key, newText){
+    return this.postenRef.update(key,{Name: newText});
+  }
 
  // doneItem(key, status){
 //    return this.postenRef.update(key, {isDone: status});
