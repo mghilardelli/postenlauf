@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Posten</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addPosten()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+<!-- whats onScroll not yet implemented-->
+<ion-content (ionScroll)="onScroll($event)">
+  <ion-list no-padding>
+    <ion-item-sliding *ngFor="let posten of allPosten | async">
+      <ion-item (click)="openPostenDetail(posten)" detail-push>
+
+        {{posten.Name}}
+      </ion-item>
+      <ion-item-options (ionSwipe)="removePosten(posten.key)" side="right">
+        <button ion-button color="danger" icon-only (click)="removePosten(posten.key)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+        <button ion-button icon-only (click)="editPosten(posten)" light>
+            <ion-icon name="paper"></ion-icon>
+        </button>
+      </ion-item-options>
+      <!--ion-item-options (ionSwipe)="doneItem(item.key, !item.isDone)" side="left"> 
+        <button ion-button *ngIf="!item.isDone" color="secondary" (click)="doneItem(item.key, !item.isDone)">Done</button> 
+        <button ion-button *ngIf="item.isDone" color="dark" (click)="doneItem(item.key, !item.isDone)">Undo</button> 
+      </ion-item-options-->
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>
