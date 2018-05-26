@@ -12,13 +12,14 @@ import { TeilnehmerPage } from '../pages/teilnehmer/teilnehmer';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
+import { PostenServiceProvider } from '../providers/posten-service/posten-service';
 import { Keyboard } from '@ionic-native/keyboard'; 
 
 import {HttpModule} from '@angular/http'; 
 import {AngularFireDatabaseModule} from 'angularfire2/database'; 
 import {AngularFireModule} from 'angularfire2'; 
 import { PostendetailPage } from '../pages/postendetail/postendetail';
+import { TeilnehmerServiceProvider } from '../providers/teilnehmer-service/teilnehmer-service';
 
 
 // Initialize Firebase
@@ -65,7 +66,8 @@ var config = {
     SplashScreen,
     Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FirebaseServiceProvider
+    PostenServiceProvider,
+    TeilnehmerServiceProvider
   ]
 })
 export class AppModule {}
