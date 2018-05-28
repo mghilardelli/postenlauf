@@ -20,6 +20,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireModule} from 'angularfire2'; 
 import { PostendetailPage } from '../pages/postendetail/postendetail';
 import { TeilnehmerServiceProvider } from '../providers/teilnehmer-service/teilnehmer-service';
+import { ResultatProvider } from '../providers/resultat/resultat';
 
 
 // Initialize Firebase
@@ -67,7 +68,8 @@ var config = {
     Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PostenServiceProvider,
-    TeilnehmerServiceProvider
+    TeilnehmerServiceProvider,
+    ResultatProvider
   ]
 })
 export class AppModule {}

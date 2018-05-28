@@ -15,26 +15,26 @@
 
 
 <ion-content class="outer-content">
-  <form #form="ngForm" (ngSubmit)="logForm(form)">
-    <ion-list>
+  
+  <form [formGroup]="todo" (ngSubmit)="sendForm()">
       <ion-item>
-        <ion-label>Teilnehmer</ion-label>
-        <ion-select multiple="false" >
-          <ion-option *ngFor="let tn of allTeilnehmer  | async" >{{tn.Vorname}} {{tn.Name}}</ion-option>
-        </ion-select>
-      </ion-item>
-
-      <ion-list-header>
-        Punktzahl
-        <ion-badge item-end color="secondary"></ion-badge>
-      </ion-list-header>
+          <ion-label>Teilnehmer</ion-label>
+          <ion-select multiple="false" formControlName="option" >
+            <ion-option *ngFor="let tn of allTeilnehmer  | async">{{tn.Vorname}} {{tn.Name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-list-header>
+            Punktzahl
+            <ion-badge item-end color="secondary"></ion-badge>
+          </ion-list-header>
       <ion-item>
-        <ion-range min="0" max="10" step="1" snaps="true" color="secondary">
-          <ion-label range-left>0</ion-label>
-          <ion-label range-right>10</ion-label>
-        </ion-range>
-      </ion-item>
-    </ion-list>
+          <ion-range min="0" max="10" step="1" snaps="true" color="secondary"  formControlName="range">
+            <ion-label range-left>0</ion-label>
+            <ion-label range-right>10</ion-label>
+          </ion-range>
+        </ion-item>
+   
     <button ion-button full type="submit">Speichern</button>
   </form>
+
 </ion-content>

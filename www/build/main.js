@@ -1,12 +1,12 @@
 webpackJsonp([3],{
 
-/***/ 100:
+/***/ 101:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TeilnehmerServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(62);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -73,7 +73,9 @@ var TeilnehmerServiceProvider = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostendetailPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_resultat_resultat__ = __webpack_require__(441);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(23);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -86,6 +88,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 /**
  * Generated class for the PostendetailPage page.
  *
@@ -93,15 +97,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var PostendetailPage = /** @class */ (function () {
-    function PostendetailPage(navCtrl, navParams, teilnehmerService) {
+    function PostendetailPage(navCtrl, navParams, formBuilder, teilnehmerService, ranglisteService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.formBuilder = formBuilder;
         this.teilnehmerService = teilnehmerService;
+        this.ranglisteService = ranglisteService;
         this.posten = navParams.get('posten');
         this.allTeilnehmer = this.teilnehmerService.getAllTeilnehmer();
+        this.todo = this.formBuilder.group({
+            option: [''],
+            range: [''],
+        });
     }
-    PostendetailPage.prototype.logForm = function (form) {
-        console.log(form);
+    PostendetailPage.prototype.sendForm = function () {
+        this.ranglisteService.addTeilnehmer(this.posten.Name, this.todo.value.range, this.todo.value.option);
+        this.todo = this.formBuilder.group({
+            option: [''],
+            range: [''],
+        });
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */]),
@@ -109,12 +123,12 @@ var PostendetailPage = /** @class */ (function () {
     ], PostendetailPage.prototype, "content", void 0);
     PostendetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-postendetail',template:/*ion-inline-start:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/postendetail/postendetail.html"*/'<!--\n  Generated template for the PostendetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{posten.Name}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="outer-content">\n  <form #form="ngForm" (ngSubmit)="logForm(form)">\n    <ion-list>\n      <ion-item>\n        <ion-label>Teilnehmer</ion-label>\n        <ion-select multiple="false" >\n          <ion-option *ngFor="let tn of allTeilnehmer  | async" >{{tn.Vorname}} {{tn.Name}}</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-list-header>\n        Punktzahl\n        <ion-badge item-end color="secondary"></ion-badge>\n      </ion-list-header>\n      <ion-item>\n        <ion-range min="0" max="10" step="1" snaps="true" color="secondary">\n          <ion-label range-left>0</ion-label>\n          <ion-label range-right>10</ion-label>\n        </ion-range>\n      </ion-item>\n    </ion-list>\n    <button ion-button full type="submit">Speichern</button>\n  </form>\n</ion-content>'/*ion-inline-end:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/postendetail/postendetail.html"*/,
+            selector: 'page-postendetail',template:/*ion-inline-start:"D:\ws6C\Postenlauf3\postenlauf\src\pages\postendetail\postendetail.html"*/'<!--\n\n  Generated template for the PostendetailPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n\n\n    <ion-title>{{posten.Name}}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content class="outer-content">\n\n  \n\n  <form [formGroup]="todo" (ngSubmit)="sendForm()">\n\n      <ion-item>\n\n          <ion-label>Teilnehmer</ion-label>\n\n          <ion-select multiple="false" formControlName="option" >\n\n            <ion-option *ngFor="let tn of allTeilnehmer  | async">{{tn.Vorname}} {{tn.Name}}</ion-option>\n\n          </ion-select>\n\n        </ion-item>\n\n        <ion-list-header>\n\n            Punktzahl\n\n            <ion-badge item-end color="secondary"></ion-badge>\n\n          </ion-list-header>\n\n      <ion-item>\n\n          <ion-range min="0" max="10" step="1" snaps="true" color="secondary"  formControlName="range">\n\n            <ion-label range-left>0</ion-label>\n\n            <ion-label range-right>10</ion-label>\n\n          </ion-range>\n\n        </ion-item>\n\n   \n\n    <button ion-button full type="submit">Speichern</button>\n\n  </form>\n\n\n\n</ion-content>'/*ion-inline-end:"D:\ws6C\Postenlauf3\postenlauf\src\pages\postendetail\postendetail.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__["a" /* TeilnehmerServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__["a" /* TeilnehmerServiceProvider */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__["a" /* TeilnehmerServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__["a" /* TeilnehmerServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__providers_resultat_resultat__["a" /* ResultatProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_resultat_resultat__["a" /* ResultatProvider */]) === "function" && _f || Object])
     ], PostendetailPage);
     return PostendetailPage;
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=postendetail.js.map
@@ -128,6 +142,7 @@ var PostendetailPage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RanglistePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(23);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -139,6 +154,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 /**
  * Generated class for the RanglistePage page.
  *
@@ -146,18 +162,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var RanglistePage = /** @class */ (function () {
-    function RanglistePage(navCtrl, navParams) {
+    function RanglistePage(navCtrl, navParams, formBuilder) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.formBuilder = formBuilder;
+        this.todo = this.formBuilder.group({
+            title: [''],
+            description: [''],
+        });
     }
     RanglistePage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad RanglistePage');
     };
+    RanglistePage.prototype.logForm = function () {
+        console.log(this.todo.value);
+    };
     RanglistePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-rangliste',template:/*ion-inline-start:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/rangliste/rangliste.html"*/'<!--\n  Generated template for the RanglistePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Rangliste</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/rangliste/rangliste.html"*/,
+            selector: 'page-rangliste',template:/*ion-inline-start:"D:\ws6C\Postenlauf3\postenlauf\src\pages\rangliste\rangliste.html"*/'<!--\n\n  Generated template for the RanglistePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Rangliste</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ws6C\Postenlauf3\postenlauf\src\pages\rangliste\rangliste.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]])
     ], RanglistePage);
     return RanglistePage;
 }());
@@ -173,7 +197,7 @@ var RanglistePage = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TeilnehmerPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_keyboard__ = __webpack_require__(111);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -275,7 +299,7 @@ var TeilnehmerPage = /** @class */ (function () {
     ], TeilnehmerPage.prototype, "content", void 0);
     TeilnehmerPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-teilnehmer',template:/*ion-inline-start:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/teilnehmer/teilnehmer.html"*/'<!--\n  Generated template for the TeilnehmerPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Teilnehmer</ion-title>\n    <ion-buttons end>\n        <button ion-button icon-only (click)="addTeilnehmer()">\n          <ion-icon name="add"></ion-icon>\n        </button>\n      </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n    <ion-list no-padding>\n        <ion-item-sliding *ngFor="let teilnehmer of allTeilnehmer | async">\n          <ion-item>\n            {{teilnehmer.Vorname}} {{teilnehmer.Name}}\n          </ion-item>\n          <ion-item-options (ionSwipe)="removeTeilnehmer(teilnehmer.key)" side="right">\n            <button ion-button color="danger" icon-only (click)="removeTeilnehmer(teilnehmer.key)">\n              <ion-icon name="trash"></ion-icon>\n            </button>\n            <button ion-button icon-only (click)="editTeilnehmer(teilnehmer.key, teilnehmer)" light>\n                <ion-icon name="paper"></ion-icon>\n            </button>\n          </ion-item-options>\n        </ion-item-sliding>\n      </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/teilnehmer/teilnehmer.html"*/,
+            selector: 'page-teilnehmer',template:/*ion-inline-start:"D:\ws6C\Postenlauf3\postenlauf\src\pages\teilnehmer\teilnehmer.html"*/'<!--\n\n  Generated template for the TeilnehmerPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Teilnehmer</ion-title>\n\n    <ion-buttons end>\n\n        <button ion-button icon-only (click)="addTeilnehmer()">\n\n          <ion-icon name="add"></ion-icon>\n\n        </button>\n\n      </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content>\n\n    <ion-list no-padding>\n\n        <ion-item-sliding *ngFor="let teilnehmer of allTeilnehmer | async">\n\n          <ion-item>\n\n            {{teilnehmer.Vorname}} {{teilnehmer.Name}}\n\n          </ion-item>\n\n          <ion-item-options (ionSwipe)="removeTeilnehmer(teilnehmer.key)" side="right">\n\n            <button ion-button color="danger" icon-only (click)="removeTeilnehmer(teilnehmer.key)">\n\n              <ion-icon name="trash"></ion-icon>\n\n            </button>\n\n            <button ion-button icon-only (click)="editTeilnehmer(teilnehmer.key, teilnehmer)" light>\n\n                <ion-icon name="paper"></ion-icon>\n\n            </button>\n\n          </ion-item-options>\n\n        </ion-item-sliding>\n\n      </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ws6C\Postenlauf3\postenlauf\src\pages\teilnehmer\teilnehmer.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__["a" /* TeilnehmerServiceProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_keyboard__["a" /* Keyboard */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], TeilnehmerPage);
@@ -308,15 +332,15 @@ webpackEmptyAsyncContext.id = 149;
 
 var map = {
 	"../pages/postendetail/postendetail.module": [
-		441,
+		442,
 		2
 	],
 	"../pages/rangliste/rangliste.module": [
-		442,
+		443,
 		1
 	],
 	"../pages/teilnehmer/teilnehmer.module": [
-		443,
+		444,
 		0
 	]
 };
@@ -365,7 +389,7 @@ var TabsPage = /** @class */ (function () {
         this.tab3Root = __WEBPACK_IMPORTED_MODULE_3__rangliste_rangliste__["a" /* RanglistePage */];
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/tabs/tabs.html"*/'<ion-tabs>\n  <ion-tab [root]="tab1Root" tabTitle="Teilnehmer" tabIcon="people"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Posten" tabIcon="basketball"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Rangliste"  tabIcon="trophy"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/tabs/tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\ws6C\Postenlauf3\postenlauf\src\pages\tabs\tabs.html"*/'<ion-tabs>\n\n  <ion-tab [root]="tab1Root" tabTitle="Teilnehmer" tabIcon="people"></ion-tab>\n\n  <ion-tab [root]="tab2Root" tabTitle="Posten" tabIcon="basketball"></ion-tab>\n\n  <ion-tab [root]="tab3Root" tabTitle="Rangliste"  tabIcon="trophy"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"D:\ws6C\Postenlauf3\postenlauf\src\pages\tabs\tabs.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], TabsPage);
@@ -480,7 +504,7 @@ var PostenPage = /** @class */ (function () {
     ], PostenPage.prototype, "content", void 0);
     PostenPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-posten',template:/*ion-inline-start:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/posten/posten.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Posten</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="addPosten()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n<!-- whats onScroll not yet implemented-->\n<ion-content > <!--(ionScroll)="onScroll($event)"-->\n  <ion-list no-padding>\n    <ion-item-sliding *ngFor="let posten of allPosten | async">\n      <ion-item (click)="openPostenDetail(posten)" detail-push>\n\n        {{posten.Name}}\n      </ion-item>\n      <ion-item-options (ionSwipe)="removePosten(posten.key)" side="right">\n        <button ion-button color="danger" icon-only (click)="removePosten(posten.key)">\n          <ion-icon name="trash"></ion-icon>\n        </button>\n        <button ion-button icon-only (click)="editPosten(posten.key, posten)" light>\n            <ion-icon name="paper"></ion-icon>\n        </button>\n      </ion-item-options>\n      <!--ion-item-options (ionSwipe)="doneItem(item.key, !item.isDone)" side="left"> \n        <button ion-button *ngIf="!item.isDone" color="secondary" (click)="doneItem(item.key, !item.isDone)">Done</button> \n        <button ion-button *ngIf="item.isDone" color="dark" (click)="doneItem(item.key, !item.isDone)">Undo</button> \n      </ion-item-options-->\n    </ion-item-sliding>\n  </ion-list>\n\n</ion-content>'/*ion-inline-end:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/posten/posten.html"*/
+            selector: 'page-posten',template:/*ion-inline-start:"D:\ws6C\Postenlauf3\postenlauf\src\pages\posten\posten.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Posten</ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button icon-only (click)="addPosten()">\n\n        <ion-icon name="add"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n<!-- whats onScroll not yet implemented-->\n\n<ion-content > <!--(ionScroll)="onScroll($event)"-->\n\n  <ion-list no-padding>\n\n    <ion-item-sliding *ngFor="let posten of allPosten | async">\n\n      <ion-item (click)="openPostenDetail(posten)" detail-push>\n\n\n\n        {{posten.Name}}\n\n      </ion-item>\n\n      <ion-item-options (ionSwipe)="removePosten(posten.key)" side="right">\n\n        <button ion-button color="danger" icon-only (click)="removePosten(posten.key)">\n\n          <ion-icon name="trash"></ion-icon>\n\n        </button>\n\n        <button ion-button icon-only (click)="editPosten(posten.key, posten)" light>\n\n            <ion-icon name="paper"></ion-icon>\n\n        </button>\n\n      </ion-item-options>\n\n      <!--ion-item-options (ionSwipe)="doneItem(item.key, !item.isDone)" side="left"> \n\n        <button ion-button *ngIf="!item.isDone" color="secondary" (click)="doneItem(item.key, !item.isDone)">Done</button> \n\n        <button ion-button *ngIf="item.isDone" color="dark" (click)="doneItem(item.key, !item.isDone)">Undo</button> \n\n      </ion-item-options-->\n\n    </ion-item-sliding>\n\n  </ion-list>\n\n\n\n</ion-content>'/*ion-inline-end:"D:\ws6C\Postenlauf3\postenlauf\src\pages\posten\posten.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_posten_service_posten_service__["a" /* PostenServiceProvider */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_keyboard__["a" /* Keyboard */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], PostenPage);
@@ -497,7 +521,7 @@ var PostenPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostenServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(62);
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -591,16 +615,18 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_posten_service_posten_service__ = __webpack_require__(280);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_keyboard__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_http__ = __webpack_require__(440);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angularfire2_database__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angularfire2__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angularfire2_database__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angularfire2__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_postendetail_postendetail__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_teilnehmer_service_teilnehmer_service__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__providers_teilnehmer_service_teilnehmer_service__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_resultat_resultat__ = __webpack_require__(441);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -674,7 +700,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_13__ionic_native_keyboard__["a" /* Keyboard */],
                 { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_12__providers_posten_service_posten_service__["a" /* PostenServiceProvider */],
-                __WEBPACK_IMPORTED_MODULE_18__providers_teilnehmer_service_teilnehmer_service__["a" /* TeilnehmerServiceProvider */]
+                __WEBPACK_IMPORTED_MODULE_18__providers_teilnehmer_service_teilnehmer_service__["a" /* TeilnehmerServiceProvider */],
+                __WEBPACK_IMPORTED_MODULE_19__providers_resultat_resultat__["a" /* ResultatProvider */]
             ]
         })
     ], AppModule);
@@ -720,7 +747,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\ws6C\Postenlauf3\postenlauf\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"D:\ws6C\Postenlauf3\postenlauf\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -755,7 +782,7 @@ var AboutPage = /** @class */ (function () {
     }
     AboutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-about',template:/*ion-inline-start:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/about/about.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      About\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/about/about.html"*/
+            selector: 'page-about',template:/*ion-inline-start:"D:\ws6C\Postenlauf3\postenlauf\src\pages\about\about.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      About\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ws6C\Postenlauf3\postenlauf\src\pages\about\about.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
     ], AboutPage);
@@ -790,7 +817,7 @@ var ContactPage = /** @class */ (function () {
     }
     ContactPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-contact',template:/*ion-inline-start:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/contact/contact.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Contact\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-list-header>Follow us on Twitter</ion-list-header>\n    <ion-item>\n      <ion-icon name="ionic" item-start></ion-icon>\n      @ionicframework\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/contact/contact.html"*/
+            selector: 'page-contact',template:/*ion-inline-start:"D:\ws6C\Postenlauf3\postenlauf\src\pages\contact\contact.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      Contact\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-list>\n\n    <ion-list-header>Follow us on Twitter</ion-list-header>\n\n    <ion-item>\n\n      <ion-icon name="ionic" item-start></ion-icon>\n\n      @ionicframework\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"D:\ws6C\Postenlauf3\postenlauf\src\pages\contact\contact.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
     ], ContactPage);
@@ -798,6 +825,63 @@ var ContactPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=contact.js.map
+
+/***/ }),
+
+/***/ 441:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResultatProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(62);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/*
+  Generated class for the ResultatProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+var ResultatProvider = /** @class */ (function () {
+    function ResultatProvider(afd) {
+        this.afd = afd;
+        this.resultatRef = this.afd.list('/Resultat/');
+        this.allResults = this.resultatRef.snapshotChanges().map(function (changes) {
+            return changes.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
+        });
+    }
+    ResultatProvider.prototype.addTeilnehmer = function (newPosten, newPunktzahl, newTeilnehmer) {
+        return this.resultatRef.push({ Posten: newPosten, Punktzahl: newPunktzahl, Teilnehmer: newTeilnehmer });
+    };
+    ResultatProvider.prototype.getAllTeilnehmer = function () {
+        return this.allResults;
+    };
+    ResultatProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
+    ], ResultatProvider);
+    return ResultatProvider;
+}());
+
+//# sourceMappingURL=resultat.js.map
 
 /***/ })
 
