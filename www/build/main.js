@@ -105,16 +105,15 @@ var PostendetailPage = /** @class */ (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */]),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */])
     ], PostendetailPage.prototype, "content", void 0);
     PostendetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-postendetail',template:/*ion-inline-start:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/postendetail/postendetail.html"*/'<!--\n  Generated template for the PostendetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>{{posten.Name}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="outer-content">\n  <form #form="ngForm" (ngSubmit)="logForm(form)">\n    <ion-list>\n      <ion-item>\n        <ion-label>Teilnehmer</ion-label>\n        <ion-select multiple="false" >\n          <ion-option *ngFor="let tn of allTeilnehmer  | async" >{{tn.Vorname}} {{tn.Name}}</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-list-header>\n        Punktzahl\n        <ion-badge item-end color="secondary"></ion-badge>\n      </ion-list-header>\n      <ion-item>\n        <ion-range min="0" max="10" step="1" snaps="true" color="secondary">\n          <ion-label range-left>0</ion-label>\n          <ion-label range-right>10</ion-label>\n        </ion-range>\n      </ion-item>\n    </ion-list>\n    <button ion-button full type="submit">Speichern</button>\n  </form>\n</ion-content>'/*ion-inline-end:"/Users/marcoghilardelli/Documents/FHNW/ws6C/Code/postenlauf/src/pages/postendetail/postendetail.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__["a" /* TeilnehmerServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__["a" /* TeilnehmerServiceProvider */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__["a" /* TeilnehmerServiceProvider */]])
     ], PostendetailPage);
     return PostendetailPage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=postendetail.js.map
