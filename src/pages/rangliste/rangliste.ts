@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ResultatProvider } from '../../providers/resultat/resultat';
+import { Observable } from 'rxjs/Observable';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 /**
  * Generated class for the RanglistePage page.
@@ -15,11 +18,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RanglistePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+private todo : FormGroup;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,private formBuilder: FormBuilder) {
+    this.todo = this.formBuilder.group({
+      title: [''],
+      description: [''],
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RanglistePage');
+  }
+  
+
+  logForm(){
+    console.log(this.todo.value)
   }
 
 }
