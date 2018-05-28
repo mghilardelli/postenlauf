@@ -110,25 +110,26 @@ var PostendetailPage = /** @class */ (function () {
             range: [''],
         });
     }
+    PostendetailPage_1 = PostendetailPage;
     PostendetailPage.prototype.sendForm = function () {
         this.ranglisteService.addTeilnehmer(this.posten.Name, this.todo.value.range, this.todo.value.option);
-        this.todo = this.formBuilder.group({
-            option: [''],
-            range: [''],
+        this.todo.value.range = 0;
+        this.navCtrl.push(PostendetailPage_1, {
+            posten: this.posten
         });
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */]),
         __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Content */]) === "function" && _a || Object)
     ], PostendetailPage.prototype, "content", void 0);
-    PostendetailPage = __decorate([
+    PostendetailPage = PostendetailPage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-postendetail',template:/*ion-inline-start:"D:\ws6C\Postenlauf3\postenlauf\src\pages\postendetail\postendetail.html"*/'<!--\n\n  Generated template for the PostendetailPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n\n\n    <ion-title>{{posten.Name}}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content class="outer-content">\n\n  \n\n  <form [formGroup]="todo" (ngSubmit)="sendForm()">\n\n      <ion-item>\n\n          <ion-label>Teilnehmer</ion-label>\n\n          <ion-select multiple="false" formControlName="option" >\n\n            <ion-option *ngFor="let tn of allTeilnehmer  | async">{{tn.Vorname}} {{tn.Name}}</ion-option>\n\n          </ion-select>\n\n        </ion-item>\n\n        <ion-list-header>\n\n            Punktzahl\n\n            <ion-badge item-end color="secondary"></ion-badge>\n\n          </ion-list-header>\n\n      <ion-item>\n\n          <ion-range min="0" max="10" step="1" snaps="true" color="secondary"  formControlName="range">\n\n            <ion-label range-left>0</ion-label>\n\n            <ion-label range-right>10</ion-label>\n\n          </ion-range>\n\n        </ion-item>\n\n   \n\n    <button ion-button full type="submit">Speichern</button>\n\n  </form>\n\n\n\n</ion-content>'/*ion-inline-end:"D:\ws6C\Postenlauf3\postenlauf\src\pages\postendetail\postendetail.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__["a" /* TeilnehmerServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_teilnehmer_service_teilnehmer_service__["a" /* TeilnehmerServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__providers_resultat_resultat__["a" /* ResultatProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_resultat_resultat__["a" /* ResultatProvider */]) === "function" && _f || Object])
     ], PostendetailPage);
     return PostendetailPage;
-    var _a, _b, _c, _d, _e, _f;
+    var PostendetailPage_1, _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=postendetail.js.map
