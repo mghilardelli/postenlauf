@@ -39,7 +39,7 @@ export class PostendetailPage {
   }
 
   sendForm(){
-    this.ranglisteService.addTeilnehmer(this.posten.Name, this.todo.value.range, this.todo.value.option);
+    this.ranglisteService.addResultat(this.posten.Name, this.todo.value.range, this.todo.value.option);
     this.todo.value.range = 0;
     this.navCtrl.push(PostendetailPage, {
       posten: this.posten

@@ -23,11 +23,11 @@ export class ResultatProvider {
      
   }
 
-addTeilnehmer(newPosten, newPunktzahl, newTeilnehmer){
+addResultat(newPosten, newPunktzahl, newTeilnehmer){
     return this.resultatRef.push({Posten: newPosten, Punktzahl: newPunktzahl, Teilnehmer: newTeilnehmer})
   }
 
-  getAllTeilnehmer(){
+  getAllResultat(){
     return this.allResults;
   }
 

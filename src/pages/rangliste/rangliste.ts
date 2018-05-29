@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { ResultatProvider } from '../../providers/resultat/resultat';
 import { Observable } from 'rxjs/Observable';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -18,22 +18,30 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class RanglistePage {
 
-private todo : FormGroup;
+  private todo: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private formBuilder: FormBuilder) {
+  @ViewChild(Content) content: Content;
+  allResulatate: Observable<any[]>;
+  newTeilnehmer: any = '';
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public resultatService: ResultatProvider) {
+    this.allResulatate = resultatService.getAllResultat();
     this.todo = this.formBuilder.group({
       title: [''],
       description: [''],
     });
-  }
+    
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RanglistePage');
-  }
-  
 
-  logForm(){
-    console.log(this.todo.value)
+    // Iteration function
+    /* this.results.forEach(function (a) {
+       if (!this[a.Name]) {
+           this[a.Name] = { Name: a.Name, Punktzahl: 0 };
+          this.rangliste.push(this[a.Name]);
+       }
+       this[a.Name].Punktzahl += a.Punktzahl;
+   }, Object.create(null));*/
+
   }
 
 }
