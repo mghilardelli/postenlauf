@@ -18,30 +18,20 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class RanglistePage {
 
-  private todo: FormGroup;
+  public rangliste;
 
-  @ViewChild(Content) content: Content;
-  allResulatate: Observable<any[]>;
-  newTeilnehmer: any = '';
+  //@ViewChild(Content) content: Content;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, public resultatService: ResultatProvider) {
-    this.allResulatate = resultatService.getAllResultat();
-    this.todo = this.formBuilder.group({
-      title: [''],
-      description: [''],
-    });
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams, public resultatService: ResultatProvider) {
 
-
-    // Iteration function
-    /* this.results.forEach(function (a) {
-       if (!this[a.Name]) {
-           this[a.Name] = { Name: a.Name, Punktzahl: 0 };
-          this.rangliste.push(this[a.Name]);
-       }
-       this[a.Name].Punktzahl += a.Punktzahl;
-   }, Object.create(null));*/
-
+    this.makeRangliste();
   }
 
-}
+    makeRangliste(){
+      this.rangliste = this.resultatService.CalculatePointsforRangliste();
+      console.log(this.rangliste);
+    }
+    
+  }
+
+

@@ -18,9 +18,9 @@
     <ion-list-header>
       Angebot
     </ion-list-header>
-    <ion-item *ngFor="let res of allResultate  | async">
-      <span item-left text-left>{{res.id}}</span>
-      <h2>{{res.Name}}</h2>
+    <ion-item *ngFor="let res of rangliste  | async">
+      <span item-left text-left></span>
+      <h2>{{res.Teilnehmer}}</h2>
       <p>{{res.Punktzahl}} Punkte</p>
     </ion-item>
   </ion-list>
