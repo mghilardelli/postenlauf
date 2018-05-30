@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { TeilnehmerServiceProvider } from '../../providers/teilnehmer-service/teilnehmer-service';
 import { ResultatProvider } from '../../providers/resultat/resultat';
 import { Observable } from 'rxjs/Observable';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 /**
@@ -32,18 +32,23 @@ export class PostendetailPage {
     this.posten = navParams.get('posten');
     this.allTeilnehmer = this.teilnehmerService.getAllTeilnehmer();
     this.todo = this.formBuilder.group({
-      option: [''], 
-      range: [''],
+      option: ['', Validators.required], 
+      range: ['', Validators.required],
      
     });
   }
 
   sendForm(){
-    this.ranglisteService.addResultat(this.posten.Name, this.todo.value.range, this.todo.value.option);
-    this.todo.value.range = 0;
-    this.navCtrl.push(PostendetailPage, {
-      posten: this.posten
-    })
+    if(this.todo.valid){
+        this.ranglisteService.addResultat(this.posten.Name, this.todo.value.range, this.todo.value.option);
+        this.todo.value.range = 0;
+        this.navCtrl.pop();
+        console.log("send");
+    }else{
+      console.log("field empty")
+    }
+
+    
   }
 
 }
