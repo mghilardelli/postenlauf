@@ -35,6 +35,19 @@ export class TeilnehmerServiceProvider {
     return this.teilnehmerRef.update(key,{Name: newText});
   }
 
+  updateTeilnehmerPunktzahl(key, points) {
+    return this.teilnehmerRef.update(key, {Punktzahl: points});
+  }
+
+  getTeilnehmer(name) {
+this.allTeilnehmer.forEach(function(a) {
+  a.forEach(function(b) {
+    if(b.Name == name) 
+    return b;
+  })
+})
+  }
+
  // doneItem(key, status){
 //    return this.postenRef.update(key, {isDone: status});
  // }

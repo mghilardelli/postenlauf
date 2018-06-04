@@ -15,13 +15,39 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-list-header>
-      Angebot
-    </ion-list-header>
-    <ion-item *ngFor="let res of rangliste  | async">
+   
+    <ion-item>
+      <ion-avatar item-start>
+        <h1>1</h1>
+      </ion-avatar>
+      <h2>Jalil Hashemi</h2>
+      <p>13 Punkte</p>
+    </ion-item>
+    <ion-item>
+        <ion-avatar item-start>
+            <h1>2</h1>
+          </ion-avatar>
+      <h2>Simon Gysin</h2>
+      <p>10 Punkte</p>
+    </ion-item>
+    <ion-item>
+        <ion-avatar item-start>
+            <h1>3</h1>
+          </ion-avatar>
+      <h2>Rupiel Muri</h2>
+      <p>8 Punkte</p>
+    </ion-item>
+    <ion-item>
+        <ion-avatar item-start>
+            <h1>4</h1>
+          </ion-avatar>
+      <h2>Peter Muster</h2>
+      <p>4 Punkte</p>
+    </ion-item>
+    <!--ion-item *ngFor="let res of rangliste  | async">
       <span item-left text-left></span>
       <h2>{{res.Teilnehmer}}</h2>
       <p>{{res.Punktzahl}} Punkte</p>
-    </ion-item>
+    </ion-item-->
   </ion-list>
 </ion-content>
